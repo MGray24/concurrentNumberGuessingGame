@@ -1,5 +1,5 @@
-from game import ComputerGame
+from game import Game
 
-game = ComputerGame(1)
+game = Game()
 
 game.run_game()

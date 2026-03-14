@@ -1,12 +1,12 @@
 import random
-class ComputerGame:
-    def __init__(self, difficulty):
+class Round:
+    def __init__(self,  secret_num, difficulty=1):
         self.LOWER_BOUND = 0
         self.UPPER_BOUND = 100*difficulty
         self.DIFFICULTY = difficulty
         self.MAX_GUESSES = 9
         self.guesses = 0
-        self.CPU_NUM = random.randint(self.LOWER_BOUND,self.UPPER_BOUND)
+        self.SECRET_NUM = secret_num
 
     def is_in_range(self, guess):
         return guess >= self.LOWER_BOUND and guess <= self.UPPER_BOUND
@@ -32,14 +32,14 @@ class ComputerGame:
     "correct" -> the argument is equal to the correct number
     '''
     def get_guess_feedback(self, guess):
-        if guess == self.CPU_NUM:
+        if guess == self.SECRET_NUM:
             return "correct"
-        elif guess < self.CPU_NUM:
+        elif guess < self.SECRET_NUM:
             return "higher"
-        elif guess > self.CPU_NUM:
+        elif guess > self.SECRET_NUM:
             return "lower"
 
-    def run_game(self):
+    def run_round(self):
         print("Welcome to the game!")
         print("Try to guess the secret number!")
         while True:
@@ -52,7 +52,7 @@ class ComputerGame:
             feedback = self.get_guess_feedback(guess)
             if feedback == "correct":
                 print("Correct!")
-                print(f"You have guessed the number {self.CPU_NUM} in {self.guesses} guesses")
+                print(f"You have guessed the number {self.SECRET_NUM} in {self.guesses} guesses")
                 return
             elif feedback == "higher":
                 print(f"The secret number is higher than {guess}")
